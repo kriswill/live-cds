@@ -18,9 +18,9 @@ jobs:
 
       # Available versions of Nix:
       # https://github.com/nixbuild/nix-quick-install-action/releases.
-      - uses: nixbuild/nix-quick-install-action@v7
+      - uses: nixbuild/nix-quick-install-action@v28
         with:
-          nix_version: 2.4pre20210908_3c56f62
+          nix_version: 2.21.0
           nix_conf: experimental-features = nix-command flakes
 
       - run: nix build ./${{ matrix.live_cd }}/.#nixosConfigurations.default.config.system.build.isoImage
