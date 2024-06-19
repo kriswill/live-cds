@@ -31,4 +31,18 @@
 
   # Allow nixos user to burn CDs.
   users.users.nixos.extraGroups = [ "cdrom" ];
+
+  nixpkgs.overlays = [
+    (self: super: {
+      # Disable tests for all Haskell packages to speed up the build.
+      # without this, the build will take several days...
+      haskellPackages = super.haskellPackages.override {
+        overrides = self: super: {
+          mkDerivation = args: super.mkDerivation (args // {
+            doCheck = false;
+          });
+        };
+      };
+    })
+  ];
 }
