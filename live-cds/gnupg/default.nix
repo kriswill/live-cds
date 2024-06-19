@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, ... }:
 
 {
   # Newest kernels might not be supported by ZFS yet. If you are
@@ -12,6 +12,7 @@
   boot.kernelParams = lib.optionals pkgs.stdenv.isi686 [ "forcepae" ];
 
   environment.systemPackages = with pkgs; [
+    disko
     cdrtools
     paperkey # https://www.jabberwocky.com/software/paperkey/
     yubikey-manager # https://nixos.wiki/wiki/Yubikey
@@ -25,8 +26,8 @@
   };
 
   # https://ludovicrousseau.blogspot.com/2019/06/gnupg-and-pcsc-conflicts.html
-  services.pcscd.enable = true;
-  services.udev.packages = with pkgs; [ yubikey-personalization ];
+  # services.pcscd.enable = true;
+  # services.udev.packages = with pkgs; [ yubikey-personalization ];
 
   # Allow nixos user to burn CDs.
   users.users.nixos.extraGroups = [ "cdrom" ];

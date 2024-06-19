@@ -52,7 +52,7 @@
     enableExtraSocket = true;
     # Enables the smartcard daemon (for working with YubiKeys, etc.).
     enableScDaemon = true;
-    pinentryFlavor = "curses";
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   home.stateVersion = "23.05";
